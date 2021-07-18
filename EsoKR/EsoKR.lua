@@ -11,9 +11,9 @@ EsoKR = EsoKR or {
     },
 }
 EsoKR.Defaults = {
-	Anchor = { BOTTOMRIGHT, BOTTOMRIGHT, 0, 7 },
-  ignorePatcher = true,
-  lang = "kr",
+    Anchor = { BOTTOMRIGHT, BOTTOMRIGHT, 0, 7 },
+    ignorePatcher = true,
+    lang = "kr",
 }
 EsoKR.savedVars = EsoKR.Defaults
 
@@ -42,7 +42,7 @@ function EsoKR:getLanguage() return GetCVar("language.2") end
 
 function EsoKR:isKorean()
     local l = self:getLanguage()
-    for _, v in pairs(korean) do if l==v then return true end end
+    for _, v in pairs(korean) do if l == v then return true end end
     return false
 end
 
@@ -89,9 +89,9 @@ function EsoKR:con2CNKR(text, encode)
     local scanleft = 0
     local result = ""
     local num = 0
-    local hashan = false;
+    local hashan = false
 
-    if(text == nil) then text = "" end
+    if (text == nil) then text = "" end
     for i in string.gmatch(text, ".") do
         --[[if(num >= 39) and hashan then
             temp = ""
@@ -111,14 +111,14 @@ function EsoKR:con2CNKR(text, encode)
                 elseif temp > 0xE38580 and temp <= 0xE3868F then temp = temp + 0x23710
                 elseif temp >= 0xEAB080 and temp <= 0xED9EAC then
                     if temp >= 0xEAB880 and temp <= 0xEABFBF then temp = temp - 0x33800
-                        elseif temp >= 0xEBB880 and temp <= 0xEBBFBF then temp = temp - 0x33800
-                        elseif temp >= 0xECB880 and temp <= 0xECBFBF then temp = temp - 0x33800
-                        else temp = temp - 0x3F800
+                    elseif temp >= 0xEBB880 and temp <= 0xEBBFBF then temp = temp - 0x33800
+                    elseif temp >= 0xECB880 and temp <= 0xECBFBF then temp = temp - 0x33800
+                    else temp = temp - 0x3F800
                     end
                 elseif not encode and temp >= 0xE6B880 and temp <= 0xE9A6A3 then temp = temp + 0x3F800
                 end
                 temp = string.format('%02X', temp)
-                r = (temp:gsub('..', function (cc) return string.char(tonumber(cc, 16)) end))
+                r = (temp:gsub('..', function(cc) return string.char(tonumber(cc, 16)) end))
                 temp = ""
                 hashan = true
                 num = num + 1
@@ -145,7 +145,7 @@ function EsoKR:E(t)
     if type == "number" then return t
     elseif type == "string" then return self:con2CNKR(t, true)
     elseif type == "table" then
-        for i, v in pairs(t) do  t[i] = self:E(v) end
+        for i, v in pairs(t) do t[i] = self:E(v) end
         return t
     else
         d(type)
@@ -155,27 +155,30 @@ end
 function EsoKR:removeIndex(text) return text:gsub("[%w][%w%d_%-,'()]+[_%-]+%d[_%-]%d+[_%-]?", "") end
 
 local function utfstrlen(str, targetlen)
-    local len = #str;
-    local left = len;
-    local cnt = 0;
-    local arr={0,0xc0,0xe0,0xf0,0xf8,0xfc};
+    local len = #str
+    local left = len
+    local cnt = 0
+    local arr = { 0, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc }
     while left ~= 0 do
-        local tmp=string.byte(str,-left);
-        local i=#arr;
+        local tmp = string.byte(str, -left)
+        local i = #arr
         while arr[i] do
-            if tmp>=arr[i] then left=left-i;break;end
-            i=i-1;
+            if tmp >= arr[i] then
+                left = left - i
+                break
+            end
+            i = i - 1
         end
-        cnt=cnt+1;
+        cnt = cnt + 1
     end
-    return cnt;
+    return cnt
 end
 
 function EsoKR:SaveAnchor()
-	local isValidAnchor, point, relativeTo, relativePoint, offsetX, offsetY = EsoKRUI:GetAnchor()
-	if isValidAnchor then
-		EsoKR.savedVars.Anchor = { point, relativePoint, offsetX, offsetY }
-	end
+    local isValidAnchor, point, relativeTo, relativePoint, offsetX, offsetY = EsoKRUI:GetAnchor()
+    if isValidAnchor then
+        EsoKR.savedVars.Anchor = { point, relativePoint, offsetX, offsetY }
+    end
 end
 
 local function RefreshUI()
@@ -183,11 +186,12 @@ local function RefreshUI()
     local count = 0
     local flagTexture
     for _, flagCode in pairs(flags) do
-        flagTexture = "EsoKR/flags/"..flagCode..".dds"
-        flagControl = GetControl("EsoKR_FlagControl_"..tostring(flagCode))
+        flagTexture = "EsoKR/flags/" .. flagCode .. ".dds"
+        flagControl = GetControl("EsoKR_FlagControl_" .. tostring(flagCode))
         if flagControl == nil then
-            flagControl = CreateControlFromVirtual("EsoKR_FlagControl_", EsoKRUI, "EsoKR_FlagControl", tostring(flagCode))
-            GetControl("EsoKR_FlagControl_"..flagCode.."Texture"):SetTexture(flagTexture)
+            flagControl = CreateControlFromVirtual("EsoKR_FlagControl_", EsoKRUI, "EsoKR_FlagControl",
+                tostring(flagCode))
+            GetControl("EsoKR_FlagControl_" .. flagCode .. "Texture"):SetTexture(flagTexture)
             if EsoKR:getLanguage() ~= flagCode then
                 flagControl:SetAlpha(0.3)
                 if flagControl:GetHandler("OnMouseDown") == nil then
@@ -196,23 +200,23 @@ local function RefreshUI()
             end
         end
         flagControl:ClearAnchors()
-        flagControl:SetAnchor(LEFT, EsoKRUI, LEFT, 14 +count*34, 0)
+        flagControl:SetAnchor(LEFT, EsoKRUI, LEFT, 14 + count * 34, 0)
         count = count + 1
     end
-    EsoKRUI:SetDimensions(25 +count*34, 50)
+    EsoKRUI:SetDimensions(25 + count * 34, 50)
     EsoKRUI:SetMouseEnabled(true)
 end
 
 function EsoKR:fontChangeWhenInit()
     local path = EsoKR:getFontPath()
-    local pair = {"ZO_TOOLTIP_STYLES", "ZO_CRAFTING_TOOLTIP_STYLES", "ZO_GAMEPAD_DYEING_TOOLTIP_STYLES"}
-    local function f(x) return path..x end
+    local pair = { "ZO_TOOLTIP_STYLES", "ZO_CRAFTING_TOOLTIP_STYLES", "ZO_GAMEPAD_DYEING_TOOLTIP_STYLES" }
+    local function f(x) return path .. x end
     local fontFaces = EsoKR.fontFaces
 
     for _, v in pairs(pair) do for k, fnt in pairs(fontFaces[v]) do _G[v][k]["fontFace"] = f(fnt) end end
 
-    SetSCTKeyboardFont(f(fontFaces.UNI67).."|29|soft-shadow-thick")
-    SetSCTGamepadFont(f(fontFaces.UNI67) .."|35|soft-shadow-thick")
+    SetSCTKeyboardFont(f(fontFaces.UNI67) .. "|29|soft-shadow-thick")
+    SetSCTGamepadFont(f(fontFaces.UNI67) .. "|35|soft-shadow-thick")
     SetNameplateKeyboardFont(f(fontFaces.UNI67), 4)
     SetNameplateGamepadFont(f(fontFaces.UNI67), 4)
 
@@ -245,7 +249,7 @@ function EsoKR:fontChangeWhenInit()
         "Fontin Regular",
         "Fontin SmallCaps",
         "Futura Condensed",
-        }
+    }
     for i = 1, #fontList do
         LMP.MediaTable.font[fontList[i]] = nil
         LMP:Register("font", fontList[i], uni57)
@@ -272,8 +276,8 @@ function EsoKR:fontChangeWhenInit()
             ["Fontin Italic"] = uni57,
             ["Fontin Regular"] = uni57,
             ["Fontin SmallCaps"] = uni57,
-            ["Futura Condensed"]= uni57,
-            ["Futura Light"] = path..fontFaces.FTN47,
+            ["Futura Condensed"] = uni57,
+            ["Futura Light"] = path .. fontFaces.FTN47,
         }
         for k, v in pairs(fontFaces.fonts) do LWF3.data.Fonts[k] = f(v) end
     end
@@ -287,8 +291,8 @@ function EsoKR:fontChangeWhenInit()
             ["Fontin Italic"] = uni57,
             ["Fontin Regular"] = uni57,
             ["Fontin SmallCaps"] = uni57,
-            ["Futura Condensed"]= uni57,
-            ["Futura Light"] = path..fontFaces.FTN47,
+            ["Futura Condensed"] = uni57,
+            ["Futura Light"] = path .. fontFaces.FTN47,
         }
         for k, v in pairs(fontFaces.fonts) do LWF4.data.Fonts[k] = f(v) end
     end
@@ -301,13 +305,13 @@ function EsoKR:fontChangeWhenInit()
         if fontFace == "$(GAMEPAD_MEDIUM_FONT)" then fontFace = f(fontFaces.FTN57) end
         if fontFace == "$(GAMEPAD_BOLD_FONT)" then fontFace = f(fontFaces.FTN87) end
 
-        if(fontFace and fontSize) then
+        if (fontFace and fontSize) then
             if type(fontSize) == "number" then
                 fontSize = tostring(fontSize)
             end
 
             local fontStyle = self:GetProperty("fontStyle", ...)
-            if(fontStyle) then
+            if (fontStyle) then
                 return string.format("%s|%s|%s", fontFace, fontSize, fontStyle)
             else
                 return string.format("%s|%s", fontFace, fontSize)
@@ -320,11 +324,11 @@ end
 
 local function fontChangeWhenPlayerActivaited()
     local path = EsoKR:getFontPath()
-    local function f(x) return path..x end
+    local function f(x) return path .. x end
     local fontFaces = EsoKR.fontFaces
 
-    SetSCTKeyboardFont(f(fontFaces.UNI67).."|29|soft-shadow-thick")
-    SetSCTGamepadFont(f(fontFaces.UNI67) .."|35|soft-shadow-thick")
+    SetSCTKeyboardFont(f(fontFaces.UNI67) .. "|29|soft-shadow-thick")
+    SetSCTGamepadFont(f(fontFaces.UNI67) .. "|35|soft-shadow-thick")
     SetNameplateKeyboardFont(f(fontFaces.UNI67), 4)
     SetNameplateGamepadFont(f(fontFaces.UNI67), 4)
 
@@ -332,7 +336,7 @@ end
 
 local function EsoKRInit()
     for _, flagCode in pairs(flags) do
-        ZO_CreateStringId("SI_BINDING_NAME_"..string.upper(flagCode), string.upper(flagCode))
+        ZO_CreateStringId("SI_BINDING_NAME_" .. string.upper(flagCode), string.upper(flagCode))
     end
 
     EsoKR:fontChangeWhenInit()
@@ -368,7 +372,7 @@ function EsoKR:Convert(edit)
         self.chat.editing = true
         local text = self:con2CNKR(edit:GetText(), true)
         edit:SetText(text)
-        if(cursorPos < utfstrlen(text)) then edit:SetCursorPosition(cursorPos) end
+        if (cursorPos < utfstrlen(text)) then edit:SetCursorPosition(cursorPos) end
         self.chat.editing = false
     end
     self.chat.privCursorPos = cursorPos
@@ -387,7 +391,6 @@ local function loadscreen(eventCode)
     zo_callLater(function() CALLBACK_MANAGER:FireCallbacks("loadscreen") end, 1000)
 end
 
-
 function EsoKR:closeMessageBox()
     ZO_Dialogs_ReleaseDialog("EsoKR:MessageBox", false)
 end
@@ -405,7 +408,7 @@ function EsoKR:showMessageBox(title, msg, btnText, callback)
 end
 
 function EsoKR:newInit()
-    EsoKR.savedVars = ZO_SavedVars:NewAccountWide("EsoKR_Variables", 1, nil, {lang=EsoKR.langVer.stable})
+    EsoKR.savedVars = ZO_SavedVars:NewAccountWide("EsoKR_Variables", 1, nil, { lang = EsoKR.langVer.stable })
     if EsoKR.savedVars.Anchor == nil then EsoKR.savedVars.Anchor = { BOTTOMRIGHT, BOTTOMRIGHT, 0, 7 } end
 
     if EsoKR.savedVars["ignorePatcher"] ~= true then
@@ -416,14 +419,14 @@ end
 
 local function LoadscreenLoaded()
     if EsoKR.savedVars["addonVer"] ~= EsoKR.version then
-        EsoKR:showMessageBox(EsoKR:getString(EsoKR_NOTICE_TITLE),EsoKR:getString(EsoKR_NOTICE_BODY),SI_DIALOG_CONFIRM)
+        EsoKR:showMessageBox(EsoKR:getString(EsoKR_NOTICE_TITLE), EsoKR:getString(EsoKR_NOTICE_BODY), SI_DIALOG_CONFIRM)
         EsoKR.savedVars["addonVer"] = EsoKR.version
     end
 end
 
 local function onAddonLoaded(eventCode, addonName)
     if (addonName ~= EsoKR.name) then
-      return
+        return
     end
     EVENT_MANAGER:UnregisterForEvent(EsoKR.name, EVENT_ADD_ON_LOADED)
 
