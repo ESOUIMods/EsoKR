@@ -3,7 +3,7 @@ EsoKR = EsoKR or {
     name = "EsoKR",
     firstInit = true,
     chat = { changed = true, privCursorPos = 0, editing = false },
-    version = "0.9.13",
+    version = "10.00",
     langVer = {
         ["stable"] = "kr",
         ["beta"] = "kb",
@@ -239,7 +239,6 @@ function EsoKR:fontChangeWhenInit()
     -- Loop through list and make sure it is using ESORK Font
     local uni57 = f(fontFaces.UNI57)
     local uni47 = f(fontFaces.FTN47)
-    local Gothic = f(fontFaces.GOTHIC)
     local fontList = {
         "Arial Narrow",
         "Consolas",
@@ -259,12 +258,6 @@ function EsoKR:fontChangeWhenInit()
     if LMP:Fetch("font", "Futura Light") ~= uni47 then
         LMP.MediaTable.font["Futura Light"] = nil
         LMP:Register("font", "Futura Light", uni47)
-    end
-
-    -- do single because it is different
-    if LMP:Fetch("font", "HY Gothic Medium") ~= Gothic then
-        LMP.MediaTable.font["HY Gothic Medium"] = nil
-        LMP:Register("font", "HY Gothic Medium", Gothic)
     end
 
     if LWF3 then

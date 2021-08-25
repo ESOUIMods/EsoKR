@@ -1,9 +1,9 @@
 ## Title: EsoKR
 ## Description: Unofficial Korean Translation
-## Version: 0.9.13
-## AddOnVersion: 913
+## Version: 10.00
+## AddOnVersion: 1000
 ## Author: DCinside |c2980b9ESO Minor Gallery|r
-## APIVersion: 100035
+## APIVersion: 101031
 ## SavedVariables: EsoKR_Variables
 ## DependsOn: LibMediaProvider-1.0>=17
 ## OptionalDependsOn: AdvancedNameplates
