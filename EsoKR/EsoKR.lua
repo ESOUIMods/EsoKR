@@ -3,11 +3,10 @@ EsoKR = EsoKR or {
     name = "EsoKR",
     firstInit = true,
     chat = { changed = true, privCursorPos = 0, editing = false },
-    version = "10.00",
+    version = "10.01",
     langVer = {
         ["stable"] = "kr",
         ["beta"] = "kb",
-        ["index"] = "tr"
     },
 }
 EsoKR.Defaults = {
@@ -17,9 +16,9 @@ EsoKR.Defaults = {
 }
 EsoKR.savedVars = EsoKR.Defaults
 
-local flags = { EsoKR.langVer.stable, EsoKR.langVer.beta, EsoKR.langVer.index, "en", "ja" }
-local korean = { EsoKR.langVer.stable, EsoKR.langVer.beta, EsoKR.langVer.index }
-local isNeedToChangeAdditionalFontTable = { EsoKR.langVer.stable, EsoKR.langVer.beta, EsoKR.langVer.index, "en" }
+local flags = { EsoKR.langVer.stable, EsoKR.langVer.beta, "en", }
+local korean = { EsoKR.langVer.stable, EsoKR.langVer.beta }
+local isNeedToChangeAdditionalFontTable = { EsoKR.langVer.stable, EsoKR.langVer.beta, "en", }
 
 -- 실시간 채팅창 폰트변환
 function EsoKR:test()
