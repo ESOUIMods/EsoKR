@@ -3,7 +3,7 @@ EsoKR = EsoKR or {
     name = "EsoKR",
     firstInit = true,
     chat = { changed = true, privCursorPos = 0, editing = false },
-    version = "10.01",
+    version = "10.02",
     langVer = {
         ["stable"] = "kr",
         ["beta"] = "kb",
@@ -403,9 +403,11 @@ function EsoKR:newInit()
     EsoKR.savedVars = ZO_SavedVars:NewAccountWide("EsoKR_Variables", 1, nil, { lang = EsoKR.langVer.stable })
     if EsoKR.savedVars.Anchor == nil then EsoKR.savedVars.Anchor = { BOTTOMRIGHT, BOTTOMRIGHT, 0, 7 } end
 
-    if EsoKR.savedVars["ignorePatcher"] ~= true then
+    if EsoKR:getLanguage() ~= "en" then
         SetCVar("IgnorePatcherLanguageSetting", 1)
         if GetCVar("IgnorePatcherLanguageSetting") == "1" then EsoKR.savedVars["ignorePatcher"] = true end
+    else
+        SetCVar("IgnorePatcherLanguageSetting", 0)
     end
 end
 

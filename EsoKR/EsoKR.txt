@@ -1,7 +1,7 @@
 ## Title: EsoKR
 ## Description: Unofficial Korean Translation
-## Version: 10.01
-## AddOnVersion: 1001
+## Version: 10.02
+## AddOnVersion: 1002
 ## Author: |cff9b15Sharlikran|r
 ## Previous Authors: DCinside |c2980b9ESO Minor Gallery|r
 ## APIVersion: 101033 101034
