@@ -1,11 +1,11 @@
 <GuiXml>
   <Controls>
-    <TopLevelControl name="EsoKRUI" mouseEnabled="true" movable="true" drawLayer="DL_BACKGROUND" clampedToScreen="false" hidden="true">
+    <TopLevelControl name="EsoKRUI" mouseEnabled="true" movable="true" drawLayer="DL_BACKGROUND" clampedToScreen="false" hidden="true" level="40" layer="CONTROLS">
       <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="GuiRoot" offsetY="7"/>
 			<OnMouseUp>
 				EsoKR_SaveAnchor()
 			</OnMouseUp>
-      <Controls>
+      <Controls level="40" layer="CONTROLS">
         <Texture name="$(parent)Bg" textureFile="EsoUI/Art/Performance/StatusMeterMunge.dds">
           <Dimensions x="320" y="256"/>
           <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER"/>
@@ -15,7 +15,7 @@
 
     <Button name="EsoKR_FlagControl" virtual="true" mouseEnabled="true" text="">
       <Dimensions x="32" y="32"/>
-      <Controls>
+      <Controls level="40" layer="CONTROLS">
         <Texture name="$(parent)Texture" alpha="1">
           <Dimensions x="32" y="32"/>
           <Anchor fill="$(parent)" point="CENTER" offsetX="0" offsetY="0"/>
