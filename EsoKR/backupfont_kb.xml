@@ -1,0 +1,11 @@
+<GuiXml>
+    <!-- Optional backup font settings for Chinese language mode. -->
+    <!-- These backup fonts will be used in place of the missing glyphs in the original font -->
+    <BackupFont originalFont="$(MEDIUM_FONT)" backupFont="EsoKR/fonts/Univers57.otf"/>
+    <BackupFont originalFont="$(BOLD_FONT)" backupFont="EsoKR/fonts/Univers67.otf"/>
+    <BackupFont originalFont="$(CHAT_FONT)" backupFont="EsoKR/fonts/Univers57.otf"/>
+    <BackupFont originalFont="$(GAMEPAD_BOLD_FONT)" backupFont="EsoKR/fonts/Univers67.otf"/>
+    <BackupFont originalFont="$(GAMEPAD_LIGHT_FONT)" backupFont="EsoKR/fonts/Univers57.otf"/>
+    <BackupFont originalFont="$(GAMEPAD_MEDIUM_FONT)" backupFont="EsoKR/fonts/Univers57.otf"/>
+
+</GuiXml>
