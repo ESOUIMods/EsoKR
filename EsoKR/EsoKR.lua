@@ -3,7 +3,7 @@ EsoKR = EsoKR or {
   name = "EsoKR",
   firstInit = true,
   chat = { changed = true, privCursorPos = 0, editing = false },
-  version = "10.07",
+  version = "10.08",
   langVer = {
     ["stable"] = "kr",
     ["beta"] = "kb",
@@ -305,7 +305,7 @@ function EsoKR:fontChangeWhenInit()
   for fontName, fontObject in pairs(GetFontList()) do
     local gData = _G[fontObject]
     if gData and gData.GetFontInfo then
-      local fileName, fontSize, foneEffect = gData:GetFontInfo()
+      local fileName, fontSize, fontEffect = gData:GetFontInfo()
 
       local index, location = nil, nil
       index, location = string.find(fileName:lower(), "univers67")
@@ -325,7 +325,10 @@ function EsoKR:fontChangeWhenInit()
         fileName = "EsoKR/Fonts/ftn47.otf"
       end
 
-      local fontDescriptor = fileName:lower() .. "|" .. fontSize .. "|" .. foneEffect:lower()
+      local fontDescriptor = fileName:lower() .. "|" .. fontSize
+      if fontEffect then
+        fontDescriptor = fontDescriptor .. "|" .. fontEffect:lower()
+      end
 
       local index, location = nil, nil
       index, location = string.find(fileName:lower(), "esoui")
@@ -340,30 +343,6 @@ function EsoKR:fontChangeWhenInit()
   ZoFontTributeAntique40:SetFont("EsoKR/Fonts/ftn47.otf|40")
   ZoFontTributeAntique30:SetFont("EsoKR/Fonts/ftn47.otf|30")
   ZoFontTributeAntique20:SetFont("EsoKR/Fonts/ftn47.otf|20")
-
-  function ZO_TooltipStyledObject:GetFontString(...)
-    local fontFace = self:GetProperty("fontFace", ...)
-    local fontSize = self:GetProperty("fontSize", ...)
-
-    if fontFace == "$(GAMEPAD_LIGHT_FONT)" then fontFace = f(fontFaces.FTN47) end
-    if fontFace == "$(GAMEPAD_MEDIUM_FONT)" then fontFace = f(fontFaces.FTN57) end
-    if fontFace == "$(GAMEPAD_BOLD_FONT)" then fontFace = f(fontFaces.FTN87) end
-
-    if fontFace and fontSize then
-      if type(fontSize) == "number" then
-        fontSize = tostring(fontSize)
-      end
-
-      local fontStyle = self:GetProperty("fontStyle", ...)
-      if fontStyle then
-        return string.format("%s|%s|%s", fontFace, fontSize, fontStyle)
-      else
-        return string.format("%s|%s", fontFace, fontSize)
-      end
-    else
-      return "ZoFontGame"
-    end
-  end
 end
 
 local function fontChangeWhenPlayerActivaited()

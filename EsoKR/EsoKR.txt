@@ -1,10 +1,10 @@
 ## Title: EsoKR
 ## Description: Unofficial Korean Translation
-## Version: 10.07
-## AddOnVersion: 1007
+## Version: 10.08
+## AddOnVersion: 1008
 ## Author: |cff9b15Sharlikran|r
 ## Previous Authors: DCinside |c2980b9ESO Minor Gallery|r
-## APIVersion: 101033 101034
+## APIVersion: 101034 101035
 ## SavedVariables: EsoKR_Variables
 ## DependsOn: LibMediaProvider-1.0>=19
 ## OptionalDependsOn: AdvancedNameplates
@@ -17,6 +17,7 @@
 
 ; This Add-on used 'tvN 즐거운이야기' and 'Noto Sans & Serif' fonts.
 
+defaultfontstrings_korean.xml
 backupfont_$(language).xml
 EsoKR.lua
 EsoKR.xml

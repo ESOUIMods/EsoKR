@@ -63,7 +63,9 @@ EsoKR.fontFaces = {
         socialTitle = FTN47,
         stableGamepadTooltip = FTN47,
         tooltip = FTN47,
+        tributeBodyText = FTN47, -- 20220614
         tributeChooseOneText = FTN47, -- 20220614
+        tributeDisabledMechanicText = FTN47, -- 20220614
         voiceChatBodyHeader = FTN47,
         worldMapTooltip = FTN47,
         -- 20210317 추가
@@ -110,7 +112,6 @@ EsoKR.fontFaces = {
         socialTitle = FTN47,
         stableGamepadTooltip = FTN47,
         tooltip = FTN47,
-        tributeChooseOneText = FTN47, -- 20220614
         voiceChatBodyHeader = FTN47,
         worldMapTooltip = FTN47,
         -- 20210317 추가
@@ -121,9 +122,13 @@ EsoKR.fontFaces = {
         houseTemplateStatValuePairValue = FTN47,
         itemSetSeparatorSection = FTN47,
         redeemCodeBodySection = FTN47,
+        tributeBodyText = FTN47, -- 20220614
+        tributeChooseOneText = FTN47, -- 20220614
+        tributeDisabledMechanicText = FTN47, -- 20220614
     },
     ZO_GAMEPAD_DYEING_TOOLTIP_STYLES = {
         body = FTN47,
+        title = FTN47,
         tooltip = FTN47,
     },
 }
