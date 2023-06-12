@@ -3,7 +3,7 @@ EsoKR = EsoKR or {
   name = "EsoKR",
   firstInit = true,
   chat = { changed = true, privCursorPos = 0, editing = false },
-  version = "10.08",
+  version = "10.09",
   langVer = {
     ["stable"] = "kr",
     ["beta"] = "kb",
@@ -289,60 +289,29 @@ function EsoKR:fontChangeWhenInit()
     for k, v in pairs(fontFaces.fonts) do LWF4.data.Fonts[k] = f(v) end
   end
 
-  local function GetFontList()
-    local fonts = {}
-    for varName, value in zo_insecurePairs(_G) do
-      if (type(value) == "userdata" and value.GetFontInfo) then
-        fonts[#fonts + 1] = varName
-      end
+    function ZO_TooltipStyledObject:GetFontString(...)
+        local fontFace = self:GetProperty("fontFace", ...)
+        local fontSize = self:GetProperty("fontSize", ...)
+
+        if fontFace == "$(GAMEPAD_LIGHT_FONT)" then fontFace = f(fontFaces.FTN47) end
+        if fontFace == "$(GAMEPAD_MEDIUM_FONT)" then fontFace = f(fontFaces.FTN57) end
+        if fontFace == "$(GAMEPAD_BOLD_FONT)" then fontFace = f(fontFaces.FTN87) end
+
+        if fontFace and fontSize then
+            if type(fontSize) == "number" then
+                fontSize = tostring(fontSize)
+            end
+
+            local fontStyle = self:GetProperty("fontStyle", ...)
+            if fontStyle then
+                return string.format("%s|%s|%s", fontFace, fontSize, fontStyle)
+            else
+                return string.format("%s|%s", fontFace, fontSize)
+            end
+        else
+            return "ZoFontGame"
+        end
     end
-    table.sort(fonts)
-    EsoKR.fonts = fonts
-    return fonts
-  end
-
-  local fontDescriptors = {}
-  for fontName, fontObject in pairs(GetFontList()) do
-    local gData = _G[fontObject]
-    if gData and gData.GetFontInfo then
-      local fileName, fontSize, fontEffect = gData:GetFontInfo()
-
-      local index, location = nil, nil
-      index, location = string.find(fileName:lower(), "univers67")
-      if index then
-        fileName = "EsoKR/Fonts/univers67.otf"
-      end
-
-      local index, location = nil, nil
-      index, location = string.find(fileName:lower(), "univers57")
-      if index then
-        fileName = "EsoKR/Fonts/univers57.otf"
-      end
-
-      local index, location = nil, nil
-      index, location = string.find(fileName:lower(), "proseantique")
-      if index then
-        fileName = "EsoKR/Fonts/ftn47.otf"
-      end
-
-      local fontDescriptor = fileName:lower() .. "|" .. fontSize
-      if fontEffect then
-        fontDescriptor = fontDescriptor .. "|" .. fontEffect:lower()
-      end
-
-      local index, location = nil, nil
-      index, location = string.find(fileName:lower(), "esoui")
-
-      if index then
-        gData:SetFont(fontDescriptor)
-        fontDescriptors[#fontDescriptors + 1] = fontDescriptor
-      end
-    end
-  end
-  EsoKR.fontDescriptors = fontDescriptors
-  ZoFontTributeAntique40:SetFont("EsoKR/Fonts/ftn47.otf|40")
-  ZoFontTributeAntique30:SetFont("EsoKR/Fonts/ftn47.otf|30")
-  ZoFontTributeAntique20:SetFont("EsoKR/Fonts/ftn47.otf|20")
 end
 
 local function fontChangeWhenPlayerActivaited()
