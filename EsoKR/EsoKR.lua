@@ -39,6 +39,7 @@ end
 
 function EsoKR:getLanguage() return GetCVar("language.2") end
 
+-- TODO: isKorean, Unused
 function EsoKR:isKorean()
   local l = self:getLanguage()
   for _, v in pairs(korean) do if l == v then return true end end
@@ -54,41 +55,14 @@ function EsoKR:getString(id)
   return self:con2CNKR(GetString(id), true)
 end
 
---[[
-local function chsize(char)
-    if not char then return 0
-    elseif char > 240 then return 4
-    elseif char > 225 then return 3
-    elseif char > 192 then return 2
-    else return 1
-    end
-end
-
-local function utf8sub(str, startChar, numChars)
-    local startIndex = 1
-    while startChar > 1 do
-        local char = string.byte(str, startIndex)
-        startIndex = startIndex + chsize(char)
-        startChar = startChar - 1
-    end
-
-    local currentIndex = startIndex
-
-    while numChars > 0 and currentIndex <= #str do
-        local char = string.byte(str, currentIndex)
-        currentIndex = currentIndex + chsize(char)
-        numChars = numChars -1
-    end
-    return str:sub(startIndex, currentIndex - 1)
-end
-]]
-
 function EsoKR:con2CNKR(text, encode)
   local temp = ""
   local scanleft = 0
   local result = ""
   local num = 0
   local hashan = false
+  local byte
+  local hex
 
   if (text == nil) then text = "" end
   for i in string.gmatch(text, ".") do
@@ -138,6 +112,7 @@ function EsoKR:con2CNKR(text, encode)
   return result
 end
 
+-- TODO: E, Unused
 function EsoKR:E(t)
   local type = type(t)
 
@@ -151,6 +126,8 @@ function EsoKR:E(t)
     return t
   end
 end
+
+-- TODO: removeIndex, Unused
 function EsoKR:removeIndex(text) return text:gsub("[%w][%w%d_%-,'()]+[_%-]+%d[_%-]%d+[_%-]?", "") end
 
 local function utfstrlen(str, targetlen)
@@ -207,111 +184,90 @@ local function RefreshUI()
 end
 
 function EsoKR:fontChangeWhenInit()
+  local styles = { "ZO_TOOLTIP_STYLES", "ZO_CRAFTING_TOOLTIP_STYLES", "ZO_GAMEPAD_DYEING_TOOLTIP_STYLES" }
   local path = EsoKR:getFontPath()
-  local pair = { "ZO_TOOLTIP_STYLES", "ZO_CRAFTING_TOOLTIP_STYLES", "ZO_GAMEPAD_DYEING_TOOLTIP_STYLES" }
   local function f(x) return path .. x end
   local fontFaces = EsoKR.fontFaces
+  for _, v in pairs(styles) do for k, fnt in pairs(fontFaces[v]) do _G[v][k]["fontFace"] = f(fnt) end end
 
-  for _, v in pairs(pair) do for k, fnt in pairs(fontFaces[v]) do _G[v][k]["fontFace"] = f(fnt) end end
-
-  SetSCTKeyboardFont(f(fontFaces.UNI67) .. "|29|soft-shadow-thick")
-  SetSCTGamepadFont(f(fontFaces.UNI67) .. "|35|soft-shadow-thick")
-  SetNameplateKeyboardFont(f(fontFaces.UNI67), 4)
-  SetNameplateGamepadFont(f(fontFaces.UNI67), 4)
-
-  -- this is set up by EsoKR in fontFaces.lua
-  -- ["Univers 55"] = UNI55,
-  -- ["Univers 57"] = UNI57,
-  -- ["Univers 67"] = UNI67,
-  -- ["Skyrim Handwritten"] = HAND,
-  -- ["ProseAntique"] = ANTIQUE,
-  -- ["Trajan Pro"] = TRAJAN,
-  -- ["Futura Condensed"] = FTN57,
-  -- ["Futura Condensed Bold"] = FTN87,
-  -- ["Futura Condensed Light"] = FTN47,
-  for k, v in pairs(fontFaces.fonts) do
-    LMP.MediaTable.font[k] = nil
-    LMP:Register("font", k, f(v))
-  end
-  LMP:SetDefault("font", "Univers 57")
-
-  -- Loop through list and make sure it is using ESORK Font
-  local uni57 = f(fontFaces.UNI57)
-  local uni47 = f(fontFaces.FTN47)
-  local fontList = {
-    "Arial Narrow",
-    "Consolas",
-    "ESO Cartographer",
-    "Fontin Bold",
-    "Fontin Italic",
-    "Fontin Regular",
-    "Fontin SmallCaps",
-    "Futura Condensed",
-  }
-  for i = 1, #fontList do
-    LMP.MediaTable.font[fontList[i]] = nil
-    LMP:Register("font", fontList[i], uni57)
-  end
-
-  -- do single because it is different
-  if LMP:Fetch("font", "Futura Light") ~= uni47 then
-    LMP.MediaTable.font["Futura Light"] = nil
-    LMP:Register("font", "Futura Light", uni47)
-  end
-
-  if LWF3 then
-    LWF3.data.Fonts = {
-      ["Arial Narrow"] = uni57,
-      ["Consolas"] = uni57,
-      ["ESO Cartographer"] = uni57,
-      ["Fontin Bold"] = uni57,
-      ["Fontin Italic"] = uni57,
-      ["Fontin Regular"] = uni57,
-      ["Fontin SmallCaps"] = uni57,
-      ["Futura Condensed"] = uni57,
-      ["Futura Light"] = path .. fontFaces.FTN47,
-    }
-    for k, v in pairs(fontFaces.fonts) do LWF3.data.Fonts[k] = f(v) end
-  end
-
-  if LWF4 then
-    LWF4.data.Fonts = {
-      ["Arial Narrow"] = uni57,
-      ["Consolas"] = uni57,
-      ["ESO Cartographer"] = uni57,
-      ["Fontin Bold"] = uni57,
-      ["Fontin Italic"] = uni57,
-      ["Fontin Regular"] = uni57,
-      ["Fontin SmallCaps"] = uni57,
-      ["Futura Condensed"] = uni57,
-      ["Futura Light"] = path .. fontFaces.FTN47,
-    }
-    for k, v in pairs(fontFaces.fonts) do LWF4.data.Fonts[k] = f(v) end
-  end
-
-    function ZO_TooltipStyledObject:GetFontString(...)
-        local fontFace = self:GetProperty("fontFace", ...)
-        local fontSize = self:GetProperty("fontSize", ...)
-
-        if fontFace == "$(GAMEPAD_LIGHT_FONT)" then fontFace = f(fontFaces.FTN47) end
-        if fontFace == "$(GAMEPAD_MEDIUM_FONT)" then fontFace = f(fontFaces.FTN57) end
-        if fontFace == "$(GAMEPAD_BOLD_FONT)" then fontFace = f(fontFaces.FTN87) end
-
-        if fontFace and fontSize then
-            if type(fontSize) == "number" then
-                fontSize = tostring(fontSize)
-            end
-
-            local fontStyle = self:GetProperty("fontStyle", ...)
-            if fontStyle then
-                return string.format("%s|%s|%s", fontFace, fontSize, fontStyle)
-            else
-                return string.format("%s|%s", fontFace, fontSize)
-            end
-        else
-            return "ZoFontGame"
-        end
+  local fontString = "EsoKR/fonts/ftn47.otf"
+  for _, fontStyle in pairs(styles) do
+    local fontInformation = _G[fontStyle]
+    for key, fontData in pairs(fontInformation) do
+      fontData["fontFace"] = fontString
+      if not fontData["fontSize"] then
+        fontData["fontSize"] = 18
+      end
     end
+  end
+
+  LMP:Register("font", "KR Futura Book", "$(ESOKR_FUTURA_CONDENSED_BOOK_FONT)")
+  LMP:Register("font", "KR Futura Medium", "$(ESOKR_FUTURA_CONDENSED_MEDIUM_FONT)")
+  LMP:Register("font", "KR Futura Bold", "$(ESOKR_FUTURA_CONDENSED_BOLD_FONT)")
+  LMP:Register("font", "KR ProseAntique", "$(ESOKR_PROSE_ANTIQUE_FONT)")
+  LMP:Register("font", "KR Univers Bold", "$(ESOKR_UNIVERS_BOLD_FONT)")
+  LMP:Register("font", "KR Univers Medium", "$(ESOKR_UNIVERS_MEDIUM_FONT)")
+  LMP:Register("font", "KR Univers Condensed", "$(ESOKR_UNIVERS_CONDENSED_FONT)")
+
+  SetSCTKeyboardFont(f(fontFaces.UNI47) .. "|29|soft-shadow-thick")
+  SetSCTGamepadFont(f(fontFaces.UNI47) .. "|35|soft-shadow-thick")
+  SetNameplateKeyboardFont(f(fontFaces.UNI47), 4)
+  SetNameplateGamepadFont(f(fontFaces.UNI47), 4)
+
+  local function GetFontList()
+    local fonts = {}
+    for varName, value in zo_insecurePairs(_G) do
+      if (type(value) == "userdata" and value.GetFontInfo) then
+        fonts[#fonts + 1] = varName
+      end
+    end
+    table.sort(fonts)
+    EsoKR.fonts = fonts
+    return fonts
+  end
+
+  local fontDescriptors = {}
+  for fontName, fontObject in pairs(GetFontList()) do
+    local gData = _G[fontObject]
+    if gData and gData.GetFontInfo then
+      local fileName, fontSize, fontEffect = gData:GetFontInfo()
+
+      local index, location = nil, nil
+      index, location = string.find(fileName:lower(), "univers67")
+      if index then
+        fileName = "EsoKR/fonts/univers47.otf"
+      end
+
+      local index, location = nil, nil
+      index, location = string.find(fileName:lower(), "univers57")
+      if index then
+        fileName = "EsoKR/fonts/univers57.otf"
+      end
+
+      local index, location = nil, nil
+      index, location = string.find(fileName:lower(), "proseantique")
+      if index then
+        fileName = "EsoKR/fonts/proseantiquepsmt.otf"
+      end
+
+      local fontDescriptor = fileName:lower() .. "|" .. fontSize
+      if fontEffect then
+        fontDescriptor = fontDescriptor .. "|" .. fontEffect:lower()
+      end
+
+      local index, location = nil, nil
+      index, location = string.find(fileName:lower(), "esoui")
+
+      if index then
+        gData:SetFont(fontDescriptor)
+        fontDescriptors[#fontDescriptors + 1] = fontDescriptor
+      end
+    end
+  end
+  EsoKR.fontDescriptors = fontDescriptors
+  ZoFontTributeAntique40:SetFont("EsoKR/fonts/proseantiquepsmt.otf|40")
+  ZoFontTributeAntique30:SetFont("EsoKR/fonts/proseantiquepsmt.otf|30")
+  ZoFontTributeAntique20:SetFont("EsoKR/fonts/proseantiquepsmt.otf|20")
 end
 
 local function fontChangeWhenPlayerActivaited()
@@ -319,11 +275,10 @@ local function fontChangeWhenPlayerActivaited()
   local function f(x) return path .. x end
   local fontFaces = EsoKR.fontFaces
 
-  SetSCTKeyboardFont(f(fontFaces.UNI67) .. "|29|soft-shadow-thick")
-  SetSCTGamepadFont(f(fontFaces.UNI67) .. "|35|soft-shadow-thick")
-  SetNameplateKeyboardFont(f(fontFaces.UNI67), 4)
-  SetNameplateGamepadFont(f(fontFaces.UNI67), 4)
-
+  SetSCTKeyboardFont(f(fontFaces.UNI47) .. "|29|soft-shadow-thick")
+  SetSCTGamepadFont(f(fontFaces.UNI47) .. "|35|soft-shadow-thick")
+  SetNameplateKeyboardFont(f(fontFaces.UNI47), 4)
+  SetNameplateGamepadFont(f(fontFaces.UNI47), 4)
 end
 
 local function EsoKRInit()

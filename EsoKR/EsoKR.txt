@@ -17,7 +17,7 @@
 
 ; This Add-on used 'tvN 즐거운이야기' and 'Noto Sans & Serif' fonts.
 
-defaultfontstrings_korean.xml
+fontstrings_shared.xml
 backupfont_$(language).xml
 EsoKR.lua
 EsoKR.xml
