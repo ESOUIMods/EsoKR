@@ -3,7 +3,7 @@ EsoKR = EsoKR or {
   name = "EsoKR",
   firstInit = true,
   chat = { changed = true, privCursorPos = 0, editing = false },
-  version = "10.08",
+  version = "10.09",
   langVer = {
     ["stable"] = "kr",
     ["beta"] = "kb",
@@ -195,9 +195,9 @@ function EsoKR:fontChangeWhenInit()
     local fontInformation = _G[fontStyle]
     for key, fontData in pairs(fontInformation) do
       fontData["fontFace"] = fontString
-      if not fontData["fontSize"] then
-        fontData["fontSize"] = 18
-      end
+      -- if not fontData["fontSize"] then
+      --   fontData["fontSize"] = 18
+      -- end
     end
   end
 
@@ -386,3 +386,33 @@ end
 EVENT_MANAGER:RegisterForEvent(EsoKR.name, EVENT_ADD_ON_LOADED, onAddonLoaded)
 EVENT_MANAGER:RegisterForEvent("EsoKR_LoadScreen", EVENT_PLAYER_ACTIVATED, loadscreen)
 CALLBACK_MANAGER:RegisterCallback("loadscreen", LoadscreenLoaded)
+
+function apply_byte_offset_to_hangul(input_filename)
+    -- Note: This Lua function is a simplified demonstration and may not be suitable for all cases
+    -- Note: Do not use this. It is for a new BETA update, also it won't work anyway because ESO doesn't allow disk access
+    local output_filename = "output.txt"
+    local target_start = 0xEAB080 -- Equivalent to U+6E00
+    local hangul_start = 0xEAE080 -- Equivalent to U+AC00
+    local hangul_end = 0xE12E83 -- Equivalent to U+D7A3
+    local offset = 0xE13A80 - 0xEAE080 -- Equivalent for 0xE000 - 0xAC00
+
+    -- local input_file = io.open(input_filename, "r")
+    -- local input_text = input_file:read("*a")
+    -- input_file:close()
+
+    local converted_text = ""
+    for char in input_text:gmatch(utf8.charpattern) do
+        local char_code = string.byte(char)
+        if char_code >= hangul_start and char_code <= hangul_end then
+            local target_code = char_code + offset
+            converted_text = converted_text .. utf8.char(target_code)
+        else
+            converted_text = converted_text .. char
+        end
+    end
+
+    -- local output_file = io.open(output_filename, "w")
+    -- output_file:write(converted_text)
+    -- output_file:close()
+end
+
