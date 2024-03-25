@@ -3,7 +3,7 @@ EsoKR = EsoKR or {
   name = "EsoKR",
   firstInit = true,
   chat = { changed = true, privCursorPos = 0, editing = false },
-  version = "10.11",
+  version = "10.12",
   langVer = {
     ["stable"] = "kr",
     ["beta"] = "kb",
@@ -190,7 +190,7 @@ function EsoKR:fontChangeWhenInit()
   local fontFaces = EsoKR.fontFaces
   for _, v in pairs(styles) do for k, fnt in pairs(fontFaces[v]) do _G[v][k]["fontFace"] = f(fnt) end end
 
-  local fontString = "EsoKR/fonts/ftn47.otf"
+  local fontString = "EsoKR/fonts/ftn47.slug"
   for _, fontStyle in pairs(styles) do
     local fontInformation = _G[fontStyle]
     for key, fontData in pairs(fontInformation) do
@@ -235,19 +235,19 @@ function EsoKR:fontChangeWhenInit()
       local index, location = nil, nil
       index, location = string.find(fileName:lower(), "univers67")
       if index then
-        fileName = "EsoKR/fonts/univers47.otf"
+        fileName = "EsoKR/fonts/univers47.slug"
       end
 
       local index, location = nil, nil
       index, location = string.find(fileName:lower(), "univers57")
       if index then
-        fileName = "EsoKR/fonts/univers57.otf"
+        fileName = "EsoKR/fonts/univers57.slug"
       end
 
       local index, location = nil, nil
       index, location = string.find(fileName:lower(), "proseantique")
       if index then
-        fileName = "EsoKR/fonts/proseantiquepsmt.otf"
+        fileName = "EsoKR/fonts/proseantiquepsmt.slug"
       end
 
       local fontDescriptor = fileName:lower() .. "|" .. fontSize
@@ -265,9 +265,9 @@ function EsoKR:fontChangeWhenInit()
     end
   end
   EsoKR.fontDescriptors = fontDescriptors
-  ZoFontTributeAntique40:SetFont("EsoKR/fonts/proseantiquepsmt.otf|40")
-  ZoFontTributeAntique30:SetFont("EsoKR/fonts/proseantiquepsmt.otf|30")
-  ZoFontTributeAntique20:SetFont("EsoKR/fonts/proseantiquepsmt.otf|20")
+  ZoFontTributeAntique40:SetFont("EsoKR/fonts/proseantiquepsmt.slug|40")
+  ZoFontTributeAntique30:SetFont("EsoKR/fonts/proseantiquepsmt.slug|30")
+  ZoFontTributeAntique20:SetFont("EsoKR/fonts/proseantiquepsmt.slug|20")
 end
 
 local function fontChangeWhenPlayerActivaited()

@@ -1,12 +1,12 @@
 ## Title: EsoKR
 ## Description: Unofficial Korean Translation
-## Version: 10.11
-## AddOnVersion: 1011
+## Version: 10.12
+## AddOnVersion: 1012
 ## Author: |cff9b15Sharlikran|r
 ## Previous Authors: DCinside |c2980b9ESO Minor Gallery|r
-## APIVersion: 101039 101040
+## APIVersion: 101040 101041
 ## SavedVariables: EsoKR_Variables
-## DependsOn: LibMediaProvider-1.0>=27
+## DependsOn: LibMediaProvider-1.0>=28
 ## OptionalDependsOn: AdvancedNameplates
 
 ; This Add-on is not created by, affiliated with or sponsored by ZeniMax

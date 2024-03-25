@@ -1,9 +1,9 @@
 <GuiXml>
-    <String name="ESOKR_FUTURA_CONDENSED_BOOK_FONT" value="EsoKR/fonts/ftn47.otf" />
-    <String name="ESOKR_FUTURA_CONDENSED_MEDIUM_FONT" value="EsoKR/fonts/ftn57.otf" />
-    <String name="ESOKR_FUTURA_CONDENSED_BOLD_FONT" value="EsoKR/fonts/ftn87.otf" />
-    <String name="ESOKR_PROSE_ANTIQUE_FONT" value="EsoKR/fonts/proseantiquepsmt.otf" />
-    <String name="ESOKR_UNIVERS_BOLD_FONT" value="EsoKR/fonts/univers47.otf" />
-    <String name="ESOKR_UNIVERS_MEDIUM_FONT" value="EsoKR/fonts/univers55.otf" />
-    <String name="ESOKR_UNIVERS_CONDENSED_FONT" value="EsoKR/fonts/univers57.otf" />
+    <String name="ESOKR_FUTURA_CONDENSED_BOOK_FONT" value="EsoKR/fonts/ftn47.slug" />
+    <String name="ESOKR_FUTURA_CONDENSED_MEDIUM_FONT" value="EsoKR/fonts/ftn57.slug" />
+    <String name="ESOKR_FUTURA_CONDENSED_BOLD_FONT" value="EsoKR/fonts/ftn87.slug" />
+    <String name="ESOKR_PROSE_ANTIQUE_FONT" value="EsoKR/fonts/proseantiquepsmt.slug" />
+    <String name="ESOKR_UNIVERS_BOLD_FONT" value="EsoKR/fonts/univers47.slug" />
+    <String name="ESOKR_UNIVERS_MEDIUM_FONT" value="EsoKR/fonts/univers55.slug" />
+    <String name="ESOKR_UNIVERS_CONDENSED_FONT" value="EsoKR/fonts/univers57.slug" />
 </GuiXml>

@@ -1,10 +1,10 @@
-local FTN47 = "ftn47.otf"
-local FTN57 = "ftn57.otf"
-local FTN87 = "ftn87.otf"
-local UNI47 = "univers47.otf"
-local UNI55 = "univers55.otf"
-local UNI57 = "univers57.otf"
-local ANTIQUE = "proseantiquepsmt.otf"
+local FTN47 = "ftn47.slug"
+local FTN57 = "ftn57.slug"
+local FTN87 = "ftn87.slug"
+local UNI47 = "univers47.slug"
+local UNI55 = "univers55.slug"
+local UNI57 = "univers57.slug"
+local ANTIQUE = "proseantiquepsmt.slug"
 EsoKR.fontFaces = {
     FTN47 = FTN47,
     FTN57 = FTN57,

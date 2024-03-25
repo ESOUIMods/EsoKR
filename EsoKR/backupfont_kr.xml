@@ -1,27 +1,27 @@
 <GuiXml>
-    <BackupFont originalFont="$(FTN47_FONT)" backupFont="EsoKR/fonts/ftn47.otf"/>
-    <BackupFont originalFont="$(TRAJAN_PRO_R_FONT)" backupFont="EsoKR/fonts/ftn47.otf"/>
-    <BackupFont originalFont="$(GAMEPAD_LIGHT_FONT)" backupFont="EsoKR/fonts/ftn47.otf"/>
+    <BackupFont originalFont="$(FTN47_FONT)" backupFont="EsoKR/fonts/ftn47.slug"/>
+    <BackupFont originalFont="$(TRAJAN_PRO_R_FONT)" backupFont="EsoKR/fonts/ftn47.slug"/>
+    <BackupFont originalFont="$(GAMEPAD_LIGHT_FONT)" backupFont="EsoKR/fonts/ftn47.slug"/>
 
-    <BackupFont originalFont="$(FTN57_FONT)" backupFont="EsoKR/fonts/ftn57.otf"/>
-    <BackupFont originalFont="$(GAMEPAD_MEDIUM_FONT)" backupFont="EsoKR/fonts/ftn57.otf"/>
+    <BackupFont originalFont="$(FTN57_FONT)" backupFont="EsoKR/fonts/ftn57.slug"/>
+    <BackupFont originalFont="$(GAMEPAD_MEDIUM_FONT)" backupFont="EsoKR/fonts/ftn57.slug"/>
 
-    <BackupFont originalFont="$(FTN87_FONT)" backupFont="EsoKR/fonts/ftn87.otf"/>
-    <BackupFont originalFont="$(HANDWRITTEN_BOLD_FONT)" backupFont="EsoKR/fonts/ftn87.otf"/>
-    <BackupFont originalFont="$(GAMEPAD_BOLD_FONT)" backupFont="EsoKR/fonts/ftn87.otf"/>
+    <BackupFont originalFont="$(FTN87_FONT)" backupFont="EsoKR/fonts/ftn87.slug"/>
+    <BackupFont originalFont="$(HANDWRITTEN_BOLD_FONT)" backupFont="EsoKR/fonts/ftn87.slug"/>
+    <BackupFont originalFont="$(GAMEPAD_BOLD_FONT)" backupFont="EsoKR/fonts/ftn87.slug"/>
 
-    <BackupFont originalFont="$(PROSE_ANTIQUE_FONT)" backupFont="EsoKR/fonts/proseantiquepsmt.otf"/>
-    <BackupFont originalFont="$(ANTIQUE_FONT)" backupFont="EsoKR/fonts/proseantiquepsmt.otf"/>
+    <BackupFont originalFont="$(PROSE_ANTIQUE_FONT)" backupFont="EsoKR/fonts/proseantiquepsmt.slug"/>
+    <BackupFont originalFont="$(ANTIQUE_FONT)" backupFont="EsoKR/fonts/proseantiquepsmt.slug"/>
 
-    <BackupFont originalFont="$(BOLD_FONT)" backupFont="EsoKR/fonts/univers47.otf"/>
-    <BackupFont originalFont="$(HANDWRITTEN_FONT)" backupFont="EsoKR/fonts/univers47.otf"/>
-    <BackupFont originalFont="$(UNIVERS67_FONT)" backupFont="EsoKR/fonts/univers47.otf"/>
+    <BackupFont originalFont="$(BOLD_FONT)" backupFont="EsoKR/fonts/univers47.slug"/>
+    <BackupFont originalFont="$(HANDWRITTEN_FONT)" backupFont="EsoKR/fonts/univers47.slug"/>
+    <BackupFont originalFont="$(UNIVERS67_FONT)" backupFont="EsoKR/fonts/univers47.slug"/>
 
-    <BackupFont originalFont="$(UNIVERS55_FONT)" backupFont="EsoKR/fonts/univers55.otf"/>
-    <BackupFont originalFont="$(STONE_TABLET_FONT)" backupFont="EsoKR/fonts/univers55.otf"/>
-    <BackupFont originalFont="$(CONSOLAS_FONT)" backupFont="EsoKR/fonts/univers55.otf"/>
+    <BackupFont originalFont="$(UNIVERS55_FONT)" backupFont="EsoKR/fonts/univers55.slug"/>
+    <BackupFont originalFont="$(STONE_TABLET_FONT)" backupFont="EsoKR/fonts/univers55.slug"/>
+    <BackupFont originalFont="$(CONSOLAS_FONT)" backupFont="EsoKR/fonts/univers55.slug"/>
 
-    <BackupFont originalFont="$(CHAT_FONT)" backupFont="EsoKR/fonts/univers57.otf"/>
-    <BackupFont originalFont="$(MEDIUM_FONT)" backupFont="EsoKR/fonts/univers57.otf"/>
-    <BackupFont originalFont="$(UNIVERS57_FONT)" backupFont="EsoKR/fonts/univers57.otf"/>
+    <BackupFont originalFont="$(CHAT_FONT)" backupFont="EsoKR/fonts/univers57.slug"/>
+    <BackupFont originalFont="$(MEDIUM_FONT)" backupFont="EsoKR/fonts/univers57.slug"/>
+    <BackupFont originalFont="$(UNIVERS57_FONT)" backupFont="EsoKR/fonts/univers57.slug"/>
 </GuiXml>
